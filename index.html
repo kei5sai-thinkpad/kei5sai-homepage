@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>kei5sai.homepage</title>
@@ -7,102 +7,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
 <style>
-  
-/* ===== 全体 ===== */
-
-/* ===== スマホ対応 ===== */
-@media (max-width: 600px){
-
-  /* タイトル小さく */
-  .hero{
-    font-size: 32px;
-    margin-top: 80px;
-  }
-
-  .sub{
-    font-size: 14px;
-  }
-
-  /* カード縦並び */
-  .cards{
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  /* カードサイズ調整 */
-  .card{
-    width: 90%;
-    height: 100px;
-    font-size: 16px;
-  }
-
-  /* メニューボタン */
-  #toggleBtn{
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
-  /* サイドバー幅 */
-  .right-box{
-    width: 80%;
-  }
-
-}
-  
-     body{
-  background: linear-gradient(135deg, #1a1a1a, #2a5298);
-} 
-
-/* フェードイン */
-@keyframes fade{
-  to{ opacity: 1; }
+/* ===== 全体設定 ===== */
+body {
+  background: linear-gradient(135deg, #0f0f0f, #1a2a44); /* より深い紺色と黒のグラデーション */
+  color: #ffffff; /* 文字をすべて白にする */
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-/* ズーム */
-@keyframes zoom{
-  from{ background-size: 100%; }
-  to{ background-size: 110%; }
-}
-
-/* ===== タイトル ===== */
-.hero{
+/* ===== タイトルとサブテキスト ===== */
+.hero {
   font-size: 60px;
   margin-top: 150px;
   opacity: 0;
   transform: translateY(50px);
   animation: fadeUp 1s forwards;
-  color:
+  color: #ffffff;
 }
 
-/* サブ */
-.sub{
+.sub {
+  font-size: 18px;
+  color: #aaaaaa; /* 少しグレーにしてオシャレに */
   opacity: 0;
   transform: translateY(50px);
   animation: fadeUp 1s forwards;
   animation-delay: 0.3s;
 }
 
-/* ===== カード ===== */
-.cards{
+/* ===== カードのデザイン ===== */
+.cards {
   margin-top: 100px;
   display: flex;
   justify-content: center;
   gap: 30px;
 }
 
-.card{
+.card {
   width: 200px;
   height: 120px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.05); /* ほんの少し透ける白 */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* うっすらとした枠線 */
   border-radius: 20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px); /* 背景をぼかす（高級感が出る） */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
 
   opacity: 0;
   transform: translateY(50px);
@@ -110,66 +64,84 @@
   transition: 0.3s;
 }
 
-/* 遅延 */
-.card:nth-child(1){ animation-delay: 0.6s; }
-.card:nth-child(2){ animation-delay: 0.8s; }
-.card:nth-child(3){ animation-delay: 1s; }
+/* アニメーションの遅延 */
+.card:nth-child(1) { animation-delay: 0.6s; }
+.card:nth-child(2) { animation-delay: 0.8s; }
+.card:nth-child(3) { animation-delay: 1s; }
 
-/* ホバー */
-.card:hover{
+/* ホバー（マウスを乗せたとき） */
+.card:hover {
+  background: rgba(255, 255, 255, 0.15);
   transform: scale(1.1) translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
-/* クリック */
-.card:active{
-  transform: scale(0.95);
-}
-
-/* ===== アニメーション ===== */
-@keyframes fadeUp{
-  to{
+/* ===== アニメーション設定 ===== */
+@keyframes fadeUp {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ===== メニュー ===== */
-#toggleBtn{
+/* ===== メニュー（サイドバー） ===== */
+#toggleBtn {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 9999;
-
   background: #2a5298;
   color: white;
   border-radius: 30px;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
-/* サイドバー */
-.right-box{
+.right-box {
   position: fixed;
   top: 0;
   right: 0;
   width: 300px;
   height: 100vh;
-  background: linear-gradient(135deg, #1a1d24, #2a2f3a);
+  background: #121212; /* サイドバーは深い黒 */
+  border-left: 1px solid #333;
   padding-top: 80px;
   transition: transform 0.5s ease;
+  z-index: 9998;
 }
 
-.right-box.closed{
+.right-box.closed {
   transform: translateX(100%);
 }
 
-/* フッター */
-a{
+.right-box button {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* ===== フッターのリンク ===== */
+footer-link {
   display: block;
   margin-top: 100px;
-  color: #ccc;
+  padding-bottom: 50px;
+  color: #666666;
+  text-decoration: none;
+}
+
+/* ===== スマホ対応 ===== */
+@media (max-width: 600px) {
+  .hero { font-size: 32px; margin-top: 80px; }
+  .sub { font-size: 14px; }
+  .cards { flex-direction: column; align-items: center; gap: 20px; }
+  .card { width: 90%; height: 100px; }
+  .right-box { width: 80%; }
 }
 </style>
 
@@ -178,25 +150,25 @@ a{
 
 <h1 class="hero">Homepage</h1>
 
-<p class="sub">Welcome to my homepage</p>
+<p class="sub">Welcome to my dark mode homepage</p>
 
 <div class="cards">
   <div class="card" onclick="location.href='di.html'">News</div>
   <div class="card" onclick="location.href='atb.html'">About the kei5sai</div>
-  <div class="card" onclick="location.href='ds.html'">-----------</div>
+  <div class="card" onclick="location.href='ds.html'">Contact</div>
 </div>
 
-<button id="toggleBtn">メニュー</button>
+<button id="toggleBtn">MENU</button>
 
 <div class="right-box closed" id="sidebar">
-  メニュー内容
+  <p>メニュー内容</p>
   <button onclick="location.href='page2.html'">お問い合わせ</button>
 </div>
 
-<a href="kure.html">©kei5sai 2025-2026</a>
+<a href="kure.html" class="footer-link">©kei5sai 2025-2026</a>
 
 <script>
-// メニュー
+// メニューの開閉
 const btn = document.getElementById("toggleBtn");
 const sidebar = document.getElementById("sidebar");
 
